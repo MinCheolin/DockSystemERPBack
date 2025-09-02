@@ -44,8 +44,10 @@ public class EquipmentService {
 
     //삭제
     public void deleteEquipment(Long equipNo){
-        Equipment equipment = equipmentRepository.findById(equipNo)
-                .orElseThrow(()->new EntityNotFoundException("해당 No의 창고를 찾을 수 없습니다."+equipNo));
+
+        if(equipmentRepository.existsById(equipNo)){
+            throw new EntityNotFoundException("해당 No의 장비를 찾을 수 없습니다."+equipNo);
+        }
 
         equipmentRepository.deleteById(equipNo);
     }
