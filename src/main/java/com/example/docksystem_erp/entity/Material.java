@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.entity;
 
-import com.example.docksystem_erp.dto.MaterialUpdateRequestDto;
+import com.example.docksystem_erp.dto.Material.MaterialUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 

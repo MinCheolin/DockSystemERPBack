@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.service;
 
-import com.example.docksystem_erp.dto.MaterialCreateRequestDto;
-import com.example.docksystem_erp.dto.MaterialResponseDto;
-import com.example.docksystem_erp.dto.MaterialUpdateRequestDto;
+import com.example.docksystem_erp.dto.Material.MaterialCreateRequestDto;
+import com.example.docksystem_erp.dto.Material.MaterialResponseDto;
+import com.example.docksystem_erp.dto.Material.MaterialUpdateRequestDto;
 import com.example.docksystem_erp.entity.Material;
 import com.example.docksystem_erp.repository.MaterialRepository;
 import jakarta.persistence.EntityNotFoundException;

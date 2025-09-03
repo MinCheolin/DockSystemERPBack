@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Material;
 
 import com.example.docksystem_erp.entity.Material;
 import lombok.Data;
