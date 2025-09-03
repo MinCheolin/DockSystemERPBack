@@ -63,7 +63,7 @@ public class EquipmentService {
     //업데이트
     public Equipment updateEquipment(Long equipNo, EquipmentUpdateRequestDto requestDto){
         Equipment existingEquipment = equipmentRepository.findById(equipNo)
-                .orElseThrow(()->new EntityNotFoundException("해당 No의 선박을 찾을 수 없습니다."+equipNo));
+                .orElseThrow(()->new EntityNotFoundException("해당 No의 장비를 찾을 수 없습니다."+equipNo));
         User user = userRepository.findById(requestDto.getUserNo())
                 .orElseThrow(()->new EntityNotFoundException("존재하지 않는 사용자입니다."+requestDto.getUserNo()));
         existingEquipment.updateEquipment(requestDto);
