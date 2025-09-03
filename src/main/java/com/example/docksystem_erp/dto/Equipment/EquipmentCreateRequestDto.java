@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Equipment;
 
 import com.example.docksystem_erp.entity.EquipmentStatusType;
 import jakarta.persistence.EnumType;
@@ -26,5 +26,6 @@ public class EquipmentCreateRequestDto {
     private Date equipPurchaseDate;
     @NotBlank(message = "최근 점검일은 필수입니다.")
     private Date equipLastInspected;
-
+    @NotBlank(message = "담당자는 필수입니다.")
+    private Long userNo;
 }

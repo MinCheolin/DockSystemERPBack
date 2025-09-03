@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Equipment;
 
 import com.example.docksystem_erp.entity.EquipmentStatusType;
 import lombok.Data;
@@ -14,4 +14,5 @@ public class EquipmentUpdateRequestDto {
     private Long equipDepreciation;
     private Date equipPurchaseDate;
     private Date equipLastInspected;
+    private Long userNo;
 }

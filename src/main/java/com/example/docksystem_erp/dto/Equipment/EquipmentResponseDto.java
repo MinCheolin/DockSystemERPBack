@@ -1,5 +1,6 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Equipment;
 
+import com.example.docksystem_erp.dto.User.UserResponseDto;
 import com.example.docksystem_erp.entity.Equipment;
 import com.example.docksystem_erp.entity.EquipmentStatusType;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class EquipmentResponseDto {
     private Long equipDepreciation;
     private Date equipPurchaseDate;
     private Date equipLastInspected;
+    private UserResponseDto user;
 
     public static EquipmentResponseDto fromEntity(Equipment equipment){
         EquipmentResponseDto dto = new EquipmentResponseDto();
@@ -29,7 +31,7 @@ public class EquipmentResponseDto {
         dto.setEquipDepreciation(equipment.getEquipDepreciation());
         dto.setEquipPurchaseDate(equipment.getEquipPurchaseDate());
         dto.setEquipLastInspected(equipment.getEquipLastInspected());
-
+        dto.setUser(UserResponseDto.fromEntity(equipment.getManager()));
         return dto;
     }
 

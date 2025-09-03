@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.controller;
 
-import com.example.docksystem_erp.dto.EquipmentCreateRequestDto;
-import com.example.docksystem_erp.dto.EquipmentResponseDto;
-import com.example.docksystem_erp.dto.EquipmentUpdateRequestDto;
+import com.example.docksystem_erp.dto.Equipment.EquipmentCreateRequestDto;
+import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
+import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
 import com.example.docksystem_erp.entity.Equipment;
 import com.example.docksystem_erp.service.EquipmentService;
 import lombok.RequiredArgsConstructor;
