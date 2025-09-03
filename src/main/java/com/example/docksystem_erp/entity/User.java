@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.User.UserUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,4 +29,13 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_no")
     private Role role;
+
+    public void updateUser(UserUpdateRequestDto requestDto){
+        this.userName = requestDto.getUserName();
+        this.userId = requestDto.getUserId();
+        this.userPw = requestDto.getUserPw();
+        this.userPhone = requestDto.getUserPhone();
+        this.userWork = requestDto.getUserWork();
+        this. userSalary = requestDto.getUserSalary();
+    }
 }

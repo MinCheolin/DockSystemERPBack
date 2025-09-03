@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Department;
 
 import lombok.Data;
 

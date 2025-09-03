@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Role;
 
 import com.example.docksystem_erp.entity.Role;
 import lombok.Data;

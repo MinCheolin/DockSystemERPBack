@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.entity;
 
-import com.example.docksystem_erp.dto.RoleUpdateRequestDto;
+import com.example.docksystem_erp.dto.Role.RoleUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 

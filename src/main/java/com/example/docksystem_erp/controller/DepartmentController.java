@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.controller;
 
-import com.example.docksystem_erp.dto.DepartmentCreateRequestDto;
-import com.example.docksystem_erp.dto.DepartmentResponseDto;
-import com.example.docksystem_erp.dto.DepartmentUpdateRequestDto;
+import com.example.docksystem_erp.dto.Department.DepartmentCreateRequestDto;
+import com.example.docksystem_erp.dto.Department.DepartmentResponseDto;
+import com.example.docksystem_erp.dto.Department.DepartmentUpdateRequestDto;
 import com.example.docksystem_erp.entity.Department;
 import com.example.docksystem_erp.service.DepartmentService;
 import lombok.RequiredArgsConstructor;

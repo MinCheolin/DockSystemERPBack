@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.controller;
 
-import com.example.docksystem_erp.dto.RoleCreateRequestDto;
-import com.example.docksystem_erp.dto.RoleResponseDto;
-import com.example.docksystem_erp.dto.RoleUpdateRequestDto;
+import com.example.docksystem_erp.dto.Role.RoleCreateRequestDto;
+import com.example.docksystem_erp.dto.Role.RoleResponseDto;
+import com.example.docksystem_erp.dto.Role.RoleUpdateRequestDto;
 import com.example.docksystem_erp.entity.Role;
 import com.example.docksystem_erp.service.RoleService;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.dto;
+package com.example.docksystem_erp.dto.Role;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
