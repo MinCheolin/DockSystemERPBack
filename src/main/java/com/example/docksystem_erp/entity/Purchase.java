@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Purchase.PurchaseUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,4 +21,8 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "client_no")
     private Client client;
+
+    public void updatePurchase(PurchaseUpdateRequestDto requestDto){
+        this.purchaseDate = requestDto.getPurchaseDate();
+    }
 }

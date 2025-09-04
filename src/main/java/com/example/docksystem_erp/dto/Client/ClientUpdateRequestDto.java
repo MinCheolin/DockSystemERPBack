@@ -1,0 +1,17 @@
+package com.example.docksystem_erp.dto.Client;
+
+import com.example.docksystem_erp.entity.ClientType;
+import lombok.Data;
+
+@Data
+public class ClientUpdateRequestDto {
+
+    private String clientName;
+    private ClientType type;
+    private String clientBrn;
+    private String clientCeo;
+    private String clientManager;
+    private String clientPhone;
+    private String clientAddress;
+    private boolean clientStatus;
+}

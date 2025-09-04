@@ -13,10 +13,10 @@ public class EquipmentCreateRequestDto {
 
     @NotBlank(message = "장비의 코드는 필수입니다.")
     private String equipCode;
-    @NotBlank(message = "장비의 이름은 필수 입니다.")
+    @NotBlank(message = "장비의 이름은 필수입니다.")
     private String equipName;
     @Enumerated(EnumType.STRING)
-    @NotBlank
+    @NotBlank(message = "장비의 유형은 필수입니다.")
     private EquipmentStatusType type;
     @NotBlank(message = "장비 구매가는 필수입니다.")
     private Long equipmentPrice;
