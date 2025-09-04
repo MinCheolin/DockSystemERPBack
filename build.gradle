@@ -35,6 +35,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws-s3'
+    // AWS S3 연동 의존성
+    implementation 'software.amazon.awssdk:s3:2.20.108'
+    // AWS 인증 및 크리덴셜 관리를 위한 의존성
+    implementation 'software.amazon.awssdk:auth'
 }
 
 tasks.named('test') {
