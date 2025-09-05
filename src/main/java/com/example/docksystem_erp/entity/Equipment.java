@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -31,6 +32,14 @@ public class Equipment {
     @JoinColumn(name = "equip_manager_no")
     private User manager;
 
-
+    public void updateEquipment(EquipmentUpdateRequestDto requestDto){
+        this.equipCode = requestDto.getEquipCode();
+        this.equipName = requestDto.getEquipName();
+        this.type = requestDto.getType();
+        this.equipPrice = requestDto.getEquipPrice();
+        this.equipDepreciation = requestDto.getEquipDepreciation();
+        this.equipPurchaseDate = requestDto.getEquipPurchaseDate();
+        this.equipLastInspected = requestDto.getEquipLastInspected();
+    }
 }
 

@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Customer.CustomerUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,4 +23,13 @@ public class Customer {
     private String customerPhone;
     @Column(nullable = false,length = 100)
     private String customerAddress;
+
+    public void updateCustomer(CustomerUpdateRequestDto requestDto){
+        this.customerName = requestDto.getCustomerName();
+        this.customerBrn = requestDto.getCustomerBrn();
+        this.customerCeo = requestDto.getCustomerCeo();
+        this.customerManager = requestDto.getCustomerManager();
+        this.customerPhone = requestDto.getCustomerPhone();
+        this.customerAddress = requestDto.getCustomerAddress();
+    }
 }

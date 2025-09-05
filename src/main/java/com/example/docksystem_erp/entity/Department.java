@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Department.DepartmentUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,4 +17,8 @@ public class Department {
     private String departmentName;
     @OneToMany(mappedBy = "department")
     private List<User> users;
+
+    public void updateDepartment(DepartmentUpdateRequestDto dto){
+        this.departmentName = dto.getDepartmentName();
+    }
 }

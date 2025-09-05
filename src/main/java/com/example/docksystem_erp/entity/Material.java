@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Material.MaterialUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,4 +23,13 @@ public class Material {
     private Long materialPrice;
     @Column(nullable = false,length = 50)
     private String materialUnit;
+
+    public void updateMaterial(MaterialUpdateRequestDto requestDto){
+        this.materialCode = requestDto.getMaterialCode();
+        this.materialName = requestDto.getMaterialName();
+        this.materialType = requestDto.getMaterialType();
+        this.materialSize = requestDto.getMaterialSize();
+        this.materialPrice = requestDto.getMaterialPrice();
+        this.materialUnit = requestDto.getMaterialUnit();
+    }
 }

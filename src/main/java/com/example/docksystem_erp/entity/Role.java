@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity;
 
+import com.example.docksystem_erp.dto.Role.RoleUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,4 +17,8 @@ public class Role {
     private String roleName;
     @OneToMany(mappedBy = "role")
     private List<User> users;
+
+    public void updateRole(RoleUpdateRequestDto dto){
+        this.roleName = dto.getRoleName();
+    }
 }
