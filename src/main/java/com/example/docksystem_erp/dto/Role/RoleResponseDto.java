@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Role;
 
-import com.example.docksystem_erp.entity.Role;
+import com.example.docksystem_erp.entity.Role.Role;
 import lombok.Data;
 
 @Data

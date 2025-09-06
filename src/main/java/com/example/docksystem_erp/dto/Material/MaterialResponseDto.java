@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Material;
 
-import com.example.docksystem_erp.entity.Material;
+import com.example.docksystem_erp.entity.Material.Material;
 import lombok.Data;
 
 @Data
@@ -22,7 +22,6 @@ public class MaterialResponseDto {
         dto.setMaterialSize(material.getMaterialSize());
         dto.setMaterialPrice(material.getMaterialPrice());
         dto.setMaterialUnit(material.getMaterialUnit());
-
         return dto;
     }
 }

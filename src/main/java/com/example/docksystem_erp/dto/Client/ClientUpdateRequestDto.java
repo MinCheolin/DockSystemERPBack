@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Client;
 
-import com.example.docksystem_erp.entity.ClientType;
+import com.example.docksystem_erp.entity.Client.ClientType;
 import lombok.Data;
 
 @Data

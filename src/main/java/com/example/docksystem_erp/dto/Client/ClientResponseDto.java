@@ -1,7 +1,7 @@
 package com.example.docksystem_erp.dto.Client;
 
-import com.example.docksystem_erp.entity.Client;
-import com.example.docksystem_erp.entity.ClientType;
+import com.example.docksystem_erp.entity.Client.Client;
+import com.example.docksystem_erp.entity.Client.ClientType;
 import lombok.Data;
 
 @Data
@@ -29,7 +29,6 @@ public class ClientResponseDto {
         dto.setClientPhone(client.getClientPhone());
         dto.setClientAddress(client.getClientAddress());
         dto.setClientStatus(client.isClientStatus());
-
         return dto;
     }
 }

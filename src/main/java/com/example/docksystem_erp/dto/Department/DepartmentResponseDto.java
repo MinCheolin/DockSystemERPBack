@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Department;
 
-import com.example.docksystem_erp.entity.Department;
+import com.example.docksystem_erp.entity.Department.Department;
 import lombok.Data;
 
 @Data

@@ -2,7 +2,7 @@ package com.example.docksystem_erp.dto.Purchase;
 
 import com.example.docksystem_erp.dto.Client.ClientResponseDto;
 import com.example.docksystem_erp.dto.User.UserResponseDto;
-import com.example.docksystem_erp.entity.Purchase;
+import com.example.docksystem_erp.entity.Purchase.Purchase;
 import lombok.Data;
 
 import java.util.Date;

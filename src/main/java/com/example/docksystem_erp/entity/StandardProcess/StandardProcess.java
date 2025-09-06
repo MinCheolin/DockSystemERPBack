@@ -1,12 +1,15 @@
 package com.example.docksystem_erp.entity.StandardProcess;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @Builder
+@RequiredArgsConstructor
 @Table(name = "standard_processes")
 public class StandardProcess {
     @Id
@@ -22,7 +25,6 @@ public class StandardProcess {
     private String spDescription;
 
     public void UpdateStandardProcess(StandardProcess spEntity){
-        this.spCode = spEntity.getSpCode();
         this.spCode = spEntity.getSpCode();
         this.spName = spEntity.getSpName();
         this.spTime = spEntity.getSpTime();

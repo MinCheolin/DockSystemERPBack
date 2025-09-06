@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Vessel;
 
-import com.example.docksystem_erp.entity.Vessel;
+import com.example.docksystem_erp.entity.Vessel.Vessel;
 import lombok.Data;
 
 @Data

@@ -2,7 +2,7 @@ package com.example.docksystem_erp.dto.User;
 
 import com.example.docksystem_erp.dto.Department.DepartmentResponseDto;
 import com.example.docksystem_erp.dto.Role.RoleResponseDto;
-import com.example.docksystem_erp.entity.User;
+import com.example.docksystem_erp.entity.User.User;
 import lombok.Data;
 
 @Data

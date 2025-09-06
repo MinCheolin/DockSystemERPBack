@@ -1,7 +1,7 @@
 package com.example.docksystem_erp.dto.Customer;
 
 
-import com.example.docksystem_erp.entity.Customer;
+import com.example.docksystem_erp.entity.Customer.Customer;
 import lombok.Data;
 
 @Data

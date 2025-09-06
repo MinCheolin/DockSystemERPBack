@@ -1,8 +1,10 @@
 package com.example.docksystem_erp.controller.StandardProcess;
 
 
+import com.example.docksystem_erp.dto.StandardProcess.StandardProcessCreateRequestDto;
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessRequestDto;
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessResponseDto;
+import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
 import com.example.docksystem_erp.service.StandardProcess.StandardProcessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +25,9 @@ public class StandardProcessController {
 
 
     @PostMapping
-    public ResponseEntity<Objects> CreateStandardProcess(StandardProcessRequestDto spDto){
-        spService.CreateStandardProcess(spDto);
-        return ResponseEntity.noContent().build();
+    public StandardProcess CreateStandardProcess(@RequestBody StandardProcessCreateRequestDto spDto){
+        return spService.CreateStandardProcess(spDto);
+
     }
 
     @PutMapping("/{no}")

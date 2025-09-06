@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.service.StandardProcess;
 
+import com.example.docksystem_erp.dto.StandardProcess.StandardProcessCreateRequestDto;
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessRequestDto;
 
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessResponseDto;
@@ -26,10 +27,13 @@ public class StandardProcessService {
     }
 
 
-    public void CreateStandardProcess(StandardProcessRequestDto spDto){
-        StandardProcess spEntity = spDto.toEntity();
-        spRepo.save(spEntity);
-
+    public StandardProcess CreateStandardProcess(StandardProcessCreateRequestDto requestDto){
+        StandardProcess standardProcess = new StandardProcess();
+        standardProcess.setSpCode(requestDto.getSpCode());
+        standardProcess.setSpName(requestDto.getSpName());
+        standardProcess.setSpDescription(requestDto.getSpDescription());
+        standardProcess.setSpTime(requestDto.getSpTime());
+        return spRepo.save(standardProcess);
     }
 
     public void UpdateStandardProcess(Long spNo, StandardProcessRequestDto spDto){

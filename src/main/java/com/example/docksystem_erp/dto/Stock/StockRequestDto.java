@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.dto.Stock;
 
-import com.example.docksystem_erp.entity.Material;
+import com.example.docksystem_erp.entity.Material.Material;
 import com.example.docksystem_erp.entity.Stock.Stock;
-import com.example.docksystem_erp.entity.Warehouse;
+import com.example.docksystem_erp.entity.Warehouse.Warehouse;
 
 public class StockRequestDto {
     private Long stockNo;
@@ -20,9 +20,5 @@ public class StockRequestDto {
                 .build();
         return stockEntity;
     }
-
-
-
-
 
 }

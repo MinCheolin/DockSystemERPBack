@@ -1,14 +1,16 @@
 package com.example.docksystem_erp.entity.Stock;
 
-import com.example.docksystem_erp.entity.Material;
-import com.example.docksystem_erp.entity.Warehouse;
+import com.example.docksystem_erp.entity.Material.Material;
+import com.example.docksystem_erp.entity.Warehouse.Warehouse;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @Builder
+@RequiredArgsConstructor
 @Table(name = "stocks")
 public class Stock {
     @Id

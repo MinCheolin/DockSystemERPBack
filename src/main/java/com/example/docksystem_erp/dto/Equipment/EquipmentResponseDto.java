@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.dto.Equipment;
 
 import com.example.docksystem_erp.dto.User.UserResponseDto;
-import com.example.docksystem_erp.entity.Equipment;
-import com.example.docksystem_erp.entity.EquipmentStatusType;
+import com.example.docksystem_erp.entity.Equipment.Equipment;
+import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
 import lombok.Data;
 
 import java.util.Date;

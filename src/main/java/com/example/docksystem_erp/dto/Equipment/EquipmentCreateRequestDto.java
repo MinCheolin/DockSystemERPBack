@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Equipment;
 
-import com.example.docksystem_erp.entity.EquipmentStatusType;
+import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
