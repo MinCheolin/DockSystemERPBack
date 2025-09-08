@@ -13,32 +13,5 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 public class StockController {
-    private final StockService stockService;
-
-    @GetMapping
-    public ResponseEntity<List<StockResponseDto>> findAllStock(){
-        return ResponseEntity.ok(stockService.findAllStock());
-    }
-
-    @PostMapping
-    public ResponseEntity<Objects> CreateStock(@RequestBody StockRequestDto stockRequestDto){
-        stockService.CreateStock(stockRequestDto);
-        return ResponseEntity.noContent().build();
-    }
-
-
-    @PutMapping("/{no}")
-    public ResponseEntity<Objects> UpdateStock(@PathVariable("no") Long stockNo,StockRequestDto stockRequestDto){
-        stockService.UpdateStock(stockNo,stockRequestDto);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping("/{no}")
-    public ResponseEntity<Objects> DeleteStock(@PathVariable("no") Long stockNo){
-        stockService.Delete(stockNo);
-        return ResponseEntity.noContent().build();
-    }
-
-
 
 }
