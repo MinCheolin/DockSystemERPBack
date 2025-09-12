@@ -22,7 +22,7 @@ public class StandardProcessService {
         List<StandardProcessResponseDto> processes = spRepo.findAll()
                 .stream()
                 .map(StandardProcessResponseDto::new)
-                .collect(Collectors.toList()); ;
+                .collect(Collectors.toList());
         return processes;
     }
 

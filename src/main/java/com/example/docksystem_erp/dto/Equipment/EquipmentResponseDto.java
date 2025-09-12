@@ -1,6 +1,5 @@
 package com.example.docksystem_erp.dto.Equipment;
 
-import com.example.docksystem_erp.dto.User.UserResponseDto;
 import com.example.docksystem_erp.entity.Equipment.Equipment;
 import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
 import com.fasterxml.jackson.annotation.JsonFormat;

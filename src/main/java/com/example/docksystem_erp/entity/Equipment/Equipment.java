@@ -1,7 +1,6 @@
 package com.example.docksystem_erp.entity.Equipment;
 
 import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
-import com.example.docksystem_erp.entity.User.User;
 import jakarta.persistence.*;
 import lombok.Data;
 

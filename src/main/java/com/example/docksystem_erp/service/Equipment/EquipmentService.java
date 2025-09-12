@@ -4,7 +4,6 @@ import com.example.docksystem_erp.dto.Equipment.EquipmentCreateRequestDto;
 import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
 import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
 import com.example.docksystem_erp.entity.Equipment.Equipment;
-import com.example.docksystem_erp.entity.User.User;
 import com.example.docksystem_erp.repository.Equipment.EquipmentRepository;
 import com.example.docksystem_erp.repository.User.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,12 +19,10 @@ import java.util.stream.Collectors;
 public class EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
-    private final UserRepository userRepository;
     @Autowired
     public EquipmentService(EquipmentRepository equipmentRepository,
                             UserRepository userRepository){
         this.equipmentRepository = equipmentRepository;
-        this.userRepository = userRepository;
     }
     //새로운 장비 정보 생성
     public Equipment creasteEquipment(EquipmentCreateRequestDto requestDto){
