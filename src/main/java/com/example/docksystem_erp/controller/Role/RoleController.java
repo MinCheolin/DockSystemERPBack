@@ -29,15 +29,19 @@ public class RoleController {
         return roleService.createRole(requestDto);
     }
     //Delete
-    @PostMapping("/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable("id")Long roleNo){
+
+    @DeleteMapping("/{roleNo}")
+    public ResponseEntity<Void> deleteRole(@PathVariable("roleNo")Long roleNo){
         roleService.deleteRole(roleNo);
         return ResponseEntity.noContent().build();
     }
     //Update
-    @PostMapping("/{roleNo}")
+    @PutMapping("/{roleNo}")
     public RoleResponseDto updateRole(@PathVariable("roleNo")Long roleNo, @RequestBody RoleUpdateRequestDto requestDto){
         Role updateRole = roleService.updateRole(roleNo,requestDto);
         return RoleResponseDto.fromEntity(updateRole);
     }
+
+
+
 }

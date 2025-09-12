@@ -13,6 +13,7 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 public class StockController {
+   /*
     private final StockService stockService;
 
     @GetMapping
@@ -39,6 +40,6 @@ public class StockController {
         return ResponseEntity.noContent().build();
     }
 
-
+*/
 
 }

@@ -31,7 +31,7 @@ public class DepartmentController {
     }
 
     //Delete
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable("id")Long departmentNo){
         departmentService.deleteDepartment(departmentNo);
         return ResponseEntity.noContent().build();
