@@ -27,16 +27,17 @@ public class UserController {
     //Create
     @PostMapping
     public User createUser(@RequestBody UserCreateRequestDto requestDto){
+        System.out.println(requestDto);
         return userService.createUser(requestDto);
     }
     //Delete
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id")Long userNo){
         userService.deleteUser(userNo);
         return ResponseEntity.noContent().build();
     }
     //Update
-    @PostMapping("/{userNo}")
+    @PutMapping("/{userNo}")
     public UserResponseDto updateUser(@PathVariable("userNo")Long userNo, @RequestBody UserUpdateRequestDto requestDto){
         User updateUser = userService.updateUser(userNo,requestDto);
         return UserResponseDto.fromEntity(updateUser);

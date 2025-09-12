@@ -1,16 +1,14 @@
 package com.example.docksystem_erp.entity.StandardProcess;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "standard_processes")
 public class StandardProcess {
     @Id
