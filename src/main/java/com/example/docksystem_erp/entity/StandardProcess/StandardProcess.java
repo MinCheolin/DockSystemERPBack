@@ -9,13 +9,14 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "standard_processes")
 public class StandardProcess {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long spNo;
-    @Column(nullable = false,unique = true,length = 50)
+    @Column(nullable = false,unique = true,length = 50, updatable = false)
     private String spCode;
     @Column(nullable = false,length = 100)
     private String spName;
@@ -23,13 +24,5 @@ public class StandardProcess {
     private String spTime;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String spDescription;
-
-    public void UpdateStandardProcess(StandardProcess spEntity){
-        this.spCode = spEntity.getSpCode();
-        this.spName = spEntity.getSpName();
-        this.spTime = spEntity.getSpTime();
-        this.spDescription = spEntity.getSpDescription();
-    }
-
 
 }

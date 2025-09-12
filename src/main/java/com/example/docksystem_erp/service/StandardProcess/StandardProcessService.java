@@ -38,8 +38,11 @@ public class StandardProcessService {
 
     public void UpdateStandardProcess(Long spNo, StandardProcessRequestDto spDto){
        StandardProcess spEntity = spRepo.findById(spNo).orElseThrow(() -> new EntityNotFoundException("해당 공정을 찾을 수 없습니다."));
-       spEntity.UpdateStandardProcess(spDto.toEntity());
-       spRepo.save(spEntity);
+        spEntity.setSpCode(spDto.getSpCode());
+        spEntity.setSpName(spDto.getSpName());
+        spEntity.setSpTime(spDto.getSpTime());
+        spEntity.setSpDescription(spDto.getSpDescription());
+        spRepo.save(spEntity);
     }
 
     public void DeleteStandardProcess(Long spNo){

@@ -15,6 +15,8 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/erp/v1/standardprocesses")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StandardProcessController {
     private final StandardProcessService spService;
 

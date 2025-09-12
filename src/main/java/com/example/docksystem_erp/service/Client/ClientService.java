@@ -32,8 +32,6 @@ public class ClientService {
         client.setClientCeo(requestDto.getClientCeo());
         client.setClientManager(requestDto.getClientManager());
         client.setClientPhone(requestDto.getClientPhone());
-        client.setClientAddress(requestDto.getClientAddress());
-        client.setClientStatus(requestDto.getClientStatus());
         return clientRepository.save(client);
     }
 

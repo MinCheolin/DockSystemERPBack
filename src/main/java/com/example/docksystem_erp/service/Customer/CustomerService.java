@@ -31,7 +31,6 @@ public class CustomerService {
         customer.setCustomerCeo(requestDto.getCustomerCeo());
         customer.setCustomerManager(requestDto.getCustomerManager());
         customer.setCustomerPhone(requestDto.getCustomerPhone());
-        customer.setCustomerAddress(requestDto.getCustomerAddress());
         return customerRepository.save(customer);
     }
 
@@ -53,8 +52,9 @@ public class CustomerService {
 
     //D
     public void deleteCustomers(Long customerNo){
-        if(customerRepository.existsById(customerNo)){
+        if(!customerRepository.existsById(customerNo)){
             throw new EntityNotFoundException("해당 No의 고객사를 찾을 수 없습니다.");
         }
+        customerRepository.deleteById(customerNo);
     }
 }

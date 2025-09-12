@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/roles")
@@ -29,13 +30,13 @@ public class RoleController {
         return roleService.createRole(requestDto);
     }
     //Delete
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable("id")Long roleNo){
         roleService.deleteRole(roleNo);
         return ResponseEntity.noContent().build();
     }
     //Update
-    @PostMapping("/{roleNo}")
+    @PutMapping("/{roleNo}")
     public RoleResponseDto updateRole(@PathVariable("roleNo")Long roleNo, @RequestBody RoleUpdateRequestDto requestDto){
         Role updateRole = roleService.updateRole(roleNo,requestDto);
         return RoleResponseDto.fromEntity(updateRole);

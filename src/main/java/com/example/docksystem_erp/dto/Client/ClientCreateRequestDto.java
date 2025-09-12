@@ -22,8 +22,4 @@ public class ClientCreateRequestDto {
     private String clientManager;
     @NotBlank(message = "거래처의 전화번호는 필수입니다.")
     private String clientPhone;
-    @NotBlank(message = "거래처의 주소 및 위치는 필수입니다.")
-    private String clientAddress;
-    @NotNull(message = "거래처의 상태는 필수입니다.")
-    private Boolean clientStatus;
 }

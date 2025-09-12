@@ -29,9 +29,6 @@ public class Equipment {
     private Date equipPurchaseDate;
     @Column(nullable = false)
     private Date equipLastInspected;
-    @ManyToOne
-    @JoinColumn(name = "equip_manager_no")
-    private User manager;
 
     public void updateEquipment(EquipmentUpdateRequestDto requestDto){
         this.equipCode = requestDto.getEquipCode();

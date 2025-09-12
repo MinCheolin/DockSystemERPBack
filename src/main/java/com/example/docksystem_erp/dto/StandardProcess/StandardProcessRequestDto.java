@@ -1,7 +1,11 @@
 package com.example.docksystem_erp.dto.StandardProcess;
 
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class StandardProcessRequestDto {
     private Long spNo;
     private String spCode;

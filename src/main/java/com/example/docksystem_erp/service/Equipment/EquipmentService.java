@@ -33,13 +33,10 @@ public class EquipmentService {
         equipment.setEquipCode(requestDto.getEquipCode());
         equipment.setEquipName(requestDto.getEquipName());
         equipment.setType(requestDto.getType());
-        equipment.setEquipPrice(requestDto.getEquipmentPrice());
+        equipment.setEquipPrice(requestDto.getEquipPrice());
         equipment.setEquipDepreciation(requestDto.getEquipDepreciation());
         equipment.setEquipPurchaseDate(requestDto.getEquipPurchaseDate());
         equipment.setEquipLastInspected(requestDto.getEquipLastInspected());
-        User user = userRepository.findById(requestDto.getUserNo())
-                .orElseThrow(()->new EntityNotFoundException("존재하지 않는 사용자입니다."+requestDto.getUserNo()));
-        equipment.setManager(user);
         return equipmentRepository.save(equipment);
     }
 
@@ -64,10 +61,7 @@ public class EquipmentService {
     public Equipment updateEquipment(Long equipNo, EquipmentUpdateRequestDto requestDto){
         Equipment existingEquipment = equipmentRepository.findById(equipNo)
                 .orElseThrow(()->new EntityNotFoundException("해당 No의 장비를 찾을 수 없습니다."+equipNo));
-        User user = userRepository.findById(requestDto.getUserNo())
-                .orElseThrow(()->new EntityNotFoundException("존재하지 않는 사용자입니다."+requestDto.getUserNo()));
         existingEquipment.updateEquipment(requestDto);
-        existingEquipment.setManager(user);
         return existingEquipment;
     }
 }

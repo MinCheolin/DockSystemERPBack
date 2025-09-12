@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/clients")
@@ -23,8 +24,6 @@ public class ClientController {
     public ResponseEntity<List<ClientResponseDto>> getAllClients(){
         List<ClientResponseDto> clients = clientService.getAllClients();
         return ResponseEntity.ok(clients);
-
-
     }
 
     // 거래처 생성 Create

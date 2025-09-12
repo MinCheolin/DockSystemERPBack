@@ -11,6 +11,4 @@ public class CustomerUpdateRequestDto {
     private String customerCeo;
     private String customerManager;
     private String customerPhone;
-    private String customerAddress;
-
 }
