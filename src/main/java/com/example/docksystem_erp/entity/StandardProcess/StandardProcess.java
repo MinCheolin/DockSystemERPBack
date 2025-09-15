@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Table(name = "standard_processes")
 public class StandardProcess {
     @Id
