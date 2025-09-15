@@ -1,12 +1,12 @@
 package com.example.docksystem_erp.entity.StandardProcess;
 
+import com.example.docksystem_erp.entity.Equipment.Equipment;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Data
 @Builder
-@AllArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "standard_processes")
@@ -22,5 +22,8 @@ public class StandardProcess {
     private String spTime;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String spDescription;
+    @OneToOne
+    @JoinColumn(name = "equip_no")
+    private Equipment equipment;
 
 }

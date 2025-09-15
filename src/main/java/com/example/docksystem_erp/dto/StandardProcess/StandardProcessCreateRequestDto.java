@@ -14,5 +14,7 @@ public class StandardProcessCreateRequestDto {
     private String spDescription;
     @NotBlank(message = "표준 공정 시간은 필수입니다.")
     private String spTime;
+    @NotBlank(message = "공정에 필요한 장비는 필수입니다.")
+    private Long equipNo;
 
 }
