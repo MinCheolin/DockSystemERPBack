@@ -16,7 +16,5 @@ public class CustomerCreateRequestDto {
     private String customerManager;
     @NotBlank(message = "연락처는 필수입니다.")
     private String customerPhone;
-    @NotBlank(message = "주소는 필수입니다.")
-    private String customerAddress;
 
 }

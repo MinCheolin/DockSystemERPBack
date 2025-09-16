@@ -15,11 +15,7 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-
-//해당부분 dev자체에 없었어가지고 추가
 @RequestMapping("/api/erp/v1/standardprocesses")
-//해당부분 프론트랑 연결하려고 추가
-@CrossOrigin(origins = "http://localhost:3000")
 public class StandardProcessController {
     private final StandardProcessService spService;
 

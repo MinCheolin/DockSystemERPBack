@@ -12,6 +12,4 @@ public class ClientUpdateRequestDto {
     private String clientCeo;
     private String clientManager;
     private String clientPhone;
-    private String clientAddress;
-    private boolean clientStatus;
 }

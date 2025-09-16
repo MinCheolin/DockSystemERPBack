@@ -16,7 +16,7 @@ public class Client {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ClientType type;
-    @Column(nullable = false,unique = true,length = 10)
+    @Column(nullable = false,unique = true,length = 12)
     private String clientBrn;
     @Column(nullable = false,length = 50)
     private String clientCeo;
@@ -24,10 +24,6 @@ public class Client {
     private String clientManager;
     @Column(nullable = false,length = 50)
     private String clientPhone;
-    @Column(nullable = false,length = 50)
-    private String clientAddress;
-    @Column(nullable = false)
-    private boolean clientStatus;
 
     public void updateClient(ClientUpdateRequestDto requestDto){
         this.clientName = requestDto.getClientName();
@@ -36,7 +32,6 @@ public class Client {
         this.clientCeo = requestDto.getClientCeo();
         this.clientManager = requestDto.getClientManager();
         this.clientPhone = requestDto.getClientPhone();
-        this.clientAddress = requestDto.getClientAddress();
-        this.clientStatus = requestDto.isClientStatus();
+
     }
 }

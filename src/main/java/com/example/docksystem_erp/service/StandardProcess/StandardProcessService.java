@@ -33,19 +33,18 @@ public class StandardProcessService {
         standardProcess.setSpName(requestDto.getSpName());
         standardProcess.setSpDescription(requestDto.getSpDescription());
         standardProcess.setSpTime(requestDto.getSpTime());
+        standardProcess.setSpEquipment(requestDto.getSpEquipment());
         return spRepo.save(standardProcess);
     }
 
-    //수정부분 entity 대신 getter로 받아오는걸로 수정
     public void UpdateStandardProcess(Long spNo, StandardProcessRequestDto spDto){
-       StandardProcess spEntity = spRepo.findById(spNo)
-               .orElseThrow(() -> new EntityNotFoundException("해당 공정을 찾을 수 없습니다."));
-       //spEntity.UpdateStandardProcess(spDto.toEntity());
-       spEntity.setSpCode(spDto.getSpCode());
-       spEntity.setSpName(spDto.getSpName());
-       spEntity.setSpTime(spDto.getSpTime());
-       spEntity.setSpDescription(spDto.getSpDescription());
-       spRepo.save(spEntity);
+       StandardProcess spEntity = spRepo.findById(spNo).orElseThrow(() -> new EntityNotFoundException("해당 공정을 찾을 수 없습니다."));
+        spEntity.setSpCode(spDto.getSpCode());
+        spEntity.setSpName(spDto.getSpName());
+        spEntity.setSpTime(spDto.getSpTime());
+        spEntity.setSpDescription(spDto.getSpDescription());
+        spEntity.setSpEquipment(spDto.getSpEquipment());
+        spRepo.save(spEntity);
     }
 
     public void DeleteStandardProcess(Long spNo){

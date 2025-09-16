@@ -13,7 +13,7 @@ public class Customer {
     private Long customerNo;
     @Column(nullable = false,length = 100)
     private String customerName;
-    @Column(nullable = false,unique = true,length = 10)
+    @Column(nullable = false,unique = true,length = 12)
     private String customerBrn;
     @Column(nullable = false,length = 50)
     private String customerCeo;
@@ -21,8 +21,6 @@ public class Customer {
     private String customerManager;
     @Column(nullable = false,length = 50)
     private String customerPhone;
-    @Column(nullable = false,length = 100)
-    private String customerAddress;
 
     public void updateCustomer(CustomerUpdateRequestDto requestDto){
         this.customerName = requestDto.getCustomerName();
@@ -30,6 +28,5 @@ public class Customer {
         this.customerCeo = requestDto.getCustomerCeo();
         this.customerManager = requestDto.getCustomerManager();
         this.customerPhone = requestDto.getCustomerPhone();
-        this.customerAddress = requestDto.getCustomerAddress();
     }
 }

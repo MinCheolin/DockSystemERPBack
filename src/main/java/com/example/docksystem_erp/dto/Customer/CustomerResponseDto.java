@@ -12,8 +12,6 @@ public class CustomerResponseDto {
     private String customerCeo;
     private String customerManager;
     private String customerPhone;
-    private String customerAddress;
-
 
     public static CustomerResponseDto fromEntity(Customer customer) {
         CustomerResponseDto dto = new CustomerResponseDto();
@@ -23,8 +21,6 @@ public class CustomerResponseDto {
         dto.setCustomerCeo(customer.getCustomerCeo());
         dto.setCustomerManager(customer.getCustomerManager());
         dto.setCustomerPhone(customer.getCustomerPhone());
-        dto.setCustomerAddress(customer.getCustomerAddress());
-
         return dto;
     }
 }

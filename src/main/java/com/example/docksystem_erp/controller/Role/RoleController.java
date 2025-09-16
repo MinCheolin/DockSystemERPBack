@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/roles")
-@CrossOrigin(origins = "http://localhost:3000")
 public class RoleController {
     private final RoleService roleService;
 
@@ -37,7 +36,7 @@ public class RoleController {
         return ResponseEntity.noContent().build();
     }
     //Update
-    @PostMapping("/{roleNo}")
+    @PutMapping("/{roleNo}")
     public RoleResponseDto updateRole(@PathVariable("roleNo")Long roleNo, @RequestBody RoleUpdateRequestDto requestDto){
         Role updateRole = roleService.updateRole(roleNo,requestDto);
         return RoleResponseDto.fromEntity(updateRole);

@@ -14,8 +14,6 @@ public class ClientResponseDto {
     private String clientCeo;
     private String clientManager;
     private String clientPhone;
-    private String clientAddress;
-    private boolean clientStatus;
 
     public static ClientResponseDto fromEntity(Client client) {
         ClientResponseDto dto = new ClientResponseDto();
@@ -27,8 +25,6 @@ public class ClientResponseDto {
         dto.setClientCeo(client.getClientCeo());
         dto.setClientManager(client.getClientManager());
         dto.setClientPhone(client.getClientPhone());
-        dto.setClientAddress(client.getClientAddress());
-        dto.setClientStatus(client.isClientStatus());
         return dto;
     }
 }
