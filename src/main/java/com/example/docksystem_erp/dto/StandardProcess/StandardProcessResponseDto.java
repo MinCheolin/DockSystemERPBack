@@ -11,7 +11,7 @@ public class StandardProcessResponseDto {
     private String spName;
     private String spTime;
     private String spDescription;
-    private EquipmentResponseDto equipment;
+    private String spEquipment;
 
     public StandardProcessResponseDto(StandardProcess standardProcess){
         this.spNo = standardProcess.getSpNo();
@@ -19,6 +19,6 @@ public class StandardProcessResponseDto {
         this.spName = standardProcess.getSpName();
         this.spTime = standardProcess.getSpTime();
         this.spDescription = standardProcess.getSpDescription();
-        this.equipment = EquipmentResponseDto.fromEntity(standardProcess.getEquipment());
+        this.spEquipment = standardProcess.getSpEquipment();
     }
 }

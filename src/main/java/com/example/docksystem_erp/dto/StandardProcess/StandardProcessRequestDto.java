@@ -14,7 +14,7 @@ public class StandardProcessRequestDto {
     private String spName;
     private String spTime;
     private String spDescription;
-    private Long equipNo;
+    private String spEquipment;
 
     public StandardProcess toEntity(Equipment equipment) {
         StandardProcess stndProcess = StandardProcess.builder()
@@ -23,7 +23,7 @@ public class StandardProcessRequestDto {
                 .spName(spName)
                 .spTime(spTime)
                 .spDescription(spDescription)
-                .equipment(equipment)
+                .spEquipment(spEquipment)
                 .build();
         return stndProcess;
     }

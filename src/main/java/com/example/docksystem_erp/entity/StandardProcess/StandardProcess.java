@@ -22,8 +22,7 @@ public class StandardProcess {
     private String spTime;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String spDescription;
-    @OneToOne
-    @JoinColumn(name = "equip_no")
-    private Equipment equipment;
+    @Column(nullable = false,length = 50)
+    private String spEquipment;
 
 }

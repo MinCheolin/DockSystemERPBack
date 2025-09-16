@@ -36,9 +36,7 @@ public class StandardProcessService {
         standardProcess.setSpName(requestDto.getSpName());
         standardProcess.setSpDescription(requestDto.getSpDescription());
         standardProcess.setSpTime(requestDto.getSpTime());
-        Equipment equipment = equipmentRepository.findById(requestDto.getEquipNo())
-                .orElseThrow(()->new EntityNotFoundException("존재하지 않는 장비입니다."+requestDto.getEquipNo()));
-        standardProcess.setEquipment(equipment);
+        standardProcess.setSpEquipment(requestDto.getSpEquipment());
         return spRepo.save(standardProcess);
     }
 
@@ -48,9 +46,7 @@ public class StandardProcessService {
         spEntity.setSpName(spDto.getSpName());
         spEntity.setSpTime(spDto.getSpTime());
         spEntity.setSpDescription(spDto.getSpDescription());
-        Equipment equipment = equipmentRepository.findById(spDto.getEquipNo())
-                .orElseThrow(()->new EntityNotFoundException("존재하지 않는 장비입니다."+spDto.getEquipNo()));
-        spEntity.setEquipment(equipment);
+        spEntity.setSpEquipment(spDto.getSpEquipment());
         spRepo.save(spEntity);
     }
 
