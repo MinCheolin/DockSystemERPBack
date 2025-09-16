@@ -1,6 +1,9 @@
 package com.example.docksystem_erp.entity.ProductionPlan;
 
+import com.example.docksystem_erp.dto.ProductPlan.ProductPlanUpdateRequestDto;
+import com.example.docksystem_erp.entity.BOM.BOM;
 import com.example.docksystem_erp.entity.Department.Department;
+import com.example.docksystem_erp.entity.Project.Project;
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,10 +23,17 @@ public class ProductPlan {
     private Date ppStartDate;
     @Column(nullable = false)
     private Date ppEndDate;
-    @ManyToOne
-    @JoinColumn(name = "sp_no")
-    private StandardProcess standardProcess;
-    @ManyToOne
-    @JoinColumn(name = "department_no")
-    private Department department;
+//    @ManyToOne
+//    @JoinColumn(name = "project_no")
+//    private Project projectNo;
+//    @ManyToOne
+//    @JoinColumn(name = "bom_no")
+//    private BOM bomNo;
+
+    public void updateProductPlan(ProductPlanUpdateRequestDto requestDto){
+        this.ppName = requestDto.getPpName();
+        this.ppStartDate = requestDto.getPpStartDate();
+        this.ppEndDate = requestDto.getPpEndDate();
+
+    }
 }
