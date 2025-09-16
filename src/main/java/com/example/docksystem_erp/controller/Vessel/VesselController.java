@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/vessels")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VesselController {
     private final VesselService vesselService;
 

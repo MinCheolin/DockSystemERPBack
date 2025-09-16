@@ -1,6 +1,10 @@
 package com.example.docksystem_erp.dto.StandardProcess;
 
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
+import lombok.Getter;
+
+//게터추가
+@Getter
 
 public class StandardProcessResponseDto {
     private Long spNo;
@@ -11,7 +15,7 @@ public class StandardProcessResponseDto {
 
     public StandardProcessResponseDto(StandardProcess standardProcess){
         this.spNo = standardProcess.getSpNo();
-        this.spCode = standardProcess.getSpName();
+        this.spCode = standardProcess.getSpCode(); //Name으로 돼있어서 Code로 수정함 ;; 누구냐
         this.spName = standardProcess.getSpName();
         this.spTime = standardProcess.getSpTime();
         this.spDescription = standardProcess.getSpDescription();

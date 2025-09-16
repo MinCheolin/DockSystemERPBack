@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/roles")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RoleController {
     private final RoleService roleService;
 
@@ -29,7 +30,8 @@ public class RoleController {
         return roleService.createRole(requestDto);
     }
     //Delete
-    @PostMapping("/{id}")
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable("id")Long roleNo){
         roleService.deleteRole(roleNo);
         return ResponseEntity.noContent().build();
