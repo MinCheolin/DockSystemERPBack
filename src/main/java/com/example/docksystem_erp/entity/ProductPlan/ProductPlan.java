@@ -1,4 +1,4 @@
-package com.example.docksystem_erp.entity.ProductionPlan;
+package com.example.docksystem_erp.entity.ProductPlan;
 
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanUpdateRequestDto;
 import com.example.docksystem_erp.entity.BOM.BOM;

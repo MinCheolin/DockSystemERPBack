@@ -1,7 +1,5 @@
 package com.example.docksystem_erp.dto.StandardProcess;
 
-import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
-import com.example.docksystem_erp.entity.Equipment.Equipment;
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +14,8 @@ public class StandardProcessRequestDto {
     private String spDescription;
     private String spEquipment;
 
-    public StandardProcess toEntity(Equipment equipment) {
+
+    public StandardProcess toEntity() {
         StandardProcess stndProcess = StandardProcess.builder()
                 .spNo(spNo)
                 .spCode(spCode)

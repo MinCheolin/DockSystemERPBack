@@ -1,7 +1,7 @@
 package com.example.docksystem_erp.dto.ProductPlan;
 
 import com.example.docksystem_erp.entity.BOM.BOM;
-import com.example.docksystem_erp.entity.ProductionPlan.ProductPlan;
+import com.example.docksystem_erp.entity.ProductPlan.ProductPlan;
 import com.example.docksystem_erp.entity.Project.Project;
 import lombok.Data;
 
