@@ -1,0 +1,44 @@
+package com.example.docksystem_erp.controller.Project;
+
+import com.example.docksystem_erp.dto.Project.ProjectCreateDto;
+import com.example.docksystem_erp.dto.Project.ProjectResponseDto;
+import com.example.docksystem_erp.dto.Project.ProjectUpdateDto;
+import com.example.docksystem_erp.service.Project.ProjectService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Objects;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/erp/v1/projects")
+public class ProjectController {
+    private final ProjectService pjtService;
+
+    @GetMapping
+    public ResponseEntity<List<ProjectResponseDto>> getAllUser(){
+             List<ProjectResponseDto> pjts = pjtService.FindAllProject();
+        return ResponseEntity.ok(pjts);
+    }
+
+    @PostMapping
+    public ResponseEntity<Objects> CreateProject(@RequestBody ProjectCreateDto dto){
+        System.out.println(dto);
+         pjtService.CreateProject(dto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{projectNo}")
+    public ResponseEntity<Objects> UpdateProject(@PathVariable("projectNo")Long projectNo, @RequestBody ProjectUpdateDto dto){
+        pjtService.UpdateProject(projectNo,dto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{projectNo}")
+    public ResponseEntity<Objects> deleteUser(@PathVariable("id")Long projectNo){
+               return ResponseEntity.noContent().build();
+    }
+
+}

@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/boms") // API 경로를 BOM에 맞게 수정
-@CrossOrigin(origins = "http://localhost:3000")
 public class BOMController {
     private final BOMService bomService;
 
@@ -26,26 +25,28 @@ public class BOMController {
         return ResponseEntity.ok(boms);
     }
 
+    /*
     // 2. BOM 단일 조회 (GET by ID)
     @GetMapping("/{bomNo}")
     public ResponseEntity<BOMResponseDto> getBOMById(@PathVariable Long bomNo) {
         BOMResponseDto bom = bomService.getBOMById(bomNo);
         return ResponseEntity.ok(bom);
-    }
+    }*/
 
     // 3. BOM 생성 (POST)
     @PostMapping
     public ResponseEntity<BOMResponseDto> createBOM(@Valid @RequestBody BOMCreateRequestDto requestDto) {
-        BOMResponseDto createdBom = bomService.createBOM(requestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBom);
+        bomService.createBOM(requestDto);
+        return ResponseEntity.noContent().build();
     }
 
+    /*
     // 4. BOM 수정 (PUT)
     @PutMapping("/{bomNo}")
     public ResponseEntity<BOMResponseDto> updateBOM(@PathVariable Long bomNo, @Valid @RequestBody BomUpdateRequestDto requestDto) {
         BOMResponseDto updatedBom = bomService.updateBOM(bomNo, requestDto);
         return ResponseEntity.ok(updatedBom);
-    }
+    }*/
 
     // 5. BOM 삭제 (DELETE)
     @DeleteMapping("/{bomNo}")
