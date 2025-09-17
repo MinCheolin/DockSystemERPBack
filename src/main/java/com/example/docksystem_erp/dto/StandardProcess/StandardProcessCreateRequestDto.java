@@ -18,3 +18,4 @@ public class StandardProcessCreateRequestDto {
     private String spEquipment;
 
 }
+//변경사항없음.

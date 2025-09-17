@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/materials")
+@CrossOrigin(origins = "http://localhost:3000")
+
 public class MaterialController {
     private final MaterialService materialService;
 

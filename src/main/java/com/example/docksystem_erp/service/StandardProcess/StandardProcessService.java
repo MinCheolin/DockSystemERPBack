@@ -4,9 +4,7 @@ import com.example.docksystem_erp.dto.StandardProcess.StandardProcessCreateReque
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessRequestDto;
 
 import com.example.docksystem_erp.dto.StandardProcess.StandardProcessResponseDto;
-import com.example.docksystem_erp.entity.Equipment.Equipment;
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
-import com.example.docksystem_erp.repository.Equipment.EquipmentRepository;
 import com.example.docksystem_erp.repository.StandardProcess.StandardProcessRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class StandardProcessService {
     private final StandardProcessRepository spRepo;
-    private final EquipmentRepository equipmentRepository;
 
     public List<StandardProcessResponseDto> findAllStandardProcess(){
         List<StandardProcessResponseDto> processes = spRepo.findAll()
                 .stream()
                 .map(StandardProcessResponseDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); ;
         return processes;
     }
 
