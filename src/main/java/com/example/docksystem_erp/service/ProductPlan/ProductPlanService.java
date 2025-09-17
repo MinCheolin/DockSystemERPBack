@@ -3,7 +3,7 @@ package com.example.docksystem_erp.service.ProductPlan;
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanCreateRequestDto;
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanResponseDto;
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanUpdateRequestDto;
-import com.example.docksystem_erp.entity.ProductionPlan.ProductPlan;
+import com.example.docksystem_erp.entity.ProductPlan.ProductPlan;
 import com.example.docksystem_erp.repository.ProductPlan.ProductPlanRespository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
