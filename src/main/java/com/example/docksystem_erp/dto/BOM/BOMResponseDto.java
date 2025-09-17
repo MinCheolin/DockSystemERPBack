@@ -1,7 +1,14 @@
 package com.example.docksystem_erp.dto.BOM;
 
+import com.example.docksystem_erp.dto.Customer.CustomerResponseDto;
+import com.example.docksystem_erp.dto.Project.ProjectResponseDto;
+import com.example.docksystem_erp.dto.StandardProcess.StandardProcessResponseDto;
+import com.example.docksystem_erp.dto.Vessel.VesselResponseDto;
 import com.example.docksystem_erp.entity.BOM.BOM;
 import com.example.docksystem_erp.entity.BOM.BOMDetail;
+import com.example.docksystem_erp.entity.Project.Project;
+import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
+import com.example.docksystem_erp.entity.Vessel.Vessel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,18 +20,16 @@ import java.util.stream.Collectors;
 
 public class BOMResponseDto {
     private Long bomNo;
-    private String vesselName;
-    private String spName;
-    private List<BomDetailDto> bomDetails;
+    private VesselResponseDto vessel;
+    private StandardProcessResponseDto sp;
 
-    public BOMResponseDto(BOM bom){
-        this.bomNo = bom.getBomNo();
-        this.vesselName = bom.getVessel().getVesselName();
-        this.spName = bom.getStandardProcess().getSpName();
 
-        this.bomDetails = bom.getBomDetails().stream()
-                .map(BomDetailDto::new)
-                .collect(Collectors.toList());
+    public static BOMResponseDto fromEntity(BOM bom){
+        BOMResponseDto dto = new BOMResponseDto();
+        dto.setBomNo(bom.getBomNo());
+        dto.setVessel(VesselResponseDto.fromEntity(bom.getVessel()));
+        dto.setSp(StandardProcessResponseDto.fromEntity(bom.getStandardProcess()));
+        return dto;
     }
 
     @Data

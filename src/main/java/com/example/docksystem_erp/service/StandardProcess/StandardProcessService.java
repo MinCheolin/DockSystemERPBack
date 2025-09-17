@@ -21,7 +21,7 @@ public class StandardProcessService {
     public List<StandardProcessResponseDto> findAllStandardProcess(){
         List<StandardProcessResponseDto> processes = spRepo.findAll()
                 .stream()
-                .map(StandardProcessResponseDto::new)
+                .map(StandardProcessResponseDto::fromEntity)
                 .collect(Collectors.toList()); ;
         return processes;
     }
