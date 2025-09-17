@@ -43,7 +43,7 @@ public class BOMService {
 
     //아델 - 크리에이션
     @Transactional
-    public BOMResponseDto createBOM(BOMCreateRequestDto requestDto){
+    public void createBOM(BOMCreateRequestDto requestDto){
         Vessel vessel = vesselRepository.findById(requestDto.getVesselNo())
                 .orElseThrow(()-> new EntityNotFoundException("존재하지않는 선박입니다."+ requestDto.getVesselNo()));
         StandardProcess standardProcess = standardProcessRepository.findById(requestDto.getSpNo())
@@ -77,22 +77,23 @@ public class BOMService {
 
                     bom.setBomDetails(bomDetails);
                     BOM savedBom = bomRepository.save(bom);
-                    return new BOMResponseDto(savedBom);
+
     }
 
     //전체 조회
     public List<BOMResponseDto> getAllBOMs(){
         return bomRepository.findAll().stream()
-                .map(BOMResponseDto::new)
+                .map(BOMResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
+    /*
     // 1개씩 조회
     public BOMResponseDto getBOMById(Long bomNo){
         BOM bom = bomRepository.findById(bomNo)
                 .orElseThrow(()-> new EntityNotFoundException("해당 No의 BOM을 찾을 수 없습니다." + bomNo));
         return new BOMResponseDto(bom);
-    }
+    }*/
 
 
     //이승기 - 삭제
@@ -103,7 +104,7 @@ public class BOMService {
         bomRepository.deleteById(bomNo);
     }
 
-    //FX - 크리스탈(수정)
+/*
     public BOMResponseDto updateBOM(Long bomNo, BomUpdateRequestDto requestDto){
         BOM bom = bomRepository.findById(bomNo)
                 .orElseThrow(()-> new EntityNotFoundException("해당 No의 Bom을 찾을 수 없습니다."));
@@ -127,6 +128,6 @@ public class BOMService {
         bom.getBomDetails().addAll(newBomDetails);
 
         return new BOMResponseDto(bom);
-    }
+    }*/
 
 }
