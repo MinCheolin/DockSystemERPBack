@@ -24,12 +24,12 @@ public class ProductPlanController {
         return ResponseEntity.ok(product_plans);
     }
 
-    // C
+    /*
     @PostMapping
     public ProductPlan createProductPlan(@RequestBody ProductPlanCreateRequestDto requestDto){
         System.out.println(requestDto);
         return productPlanService.createProductPlan(requestDto);
-    }
+    }*/
 
     // D
     @DeleteMapping("/{id}")
@@ -38,10 +38,10 @@ public class ProductPlanController {
         return ResponseEntity.noContent().build();
     }
 
-    // U
+    /*
     @PutMapping("/{ppNo}")
     public ProductPlanResponseDto updateProductPlan(@PathVariable("ppNo")Long ppNo, @RequestBody ProductPlanUpdateRequestDto requestDto){
         ProductPlan updateProductPlan = productPlanService.updateProductPlan(ppNo, requestDto);
         return ProductPlanResponseDto.fromEntity(updateProductPlan);
-    }
+    }*/
 }

@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.dto.Project;
 
+import com.example.docksystem_erp.dto.ProductPlan.ProductPlanCreateRequestDto;
 import com.example.docksystem_erp.entity.Customer.Customer;
 import com.example.docksystem_erp.entity.Project.Project;
 import com.example.docksystem_erp.entity.Project.ProjectType;
@@ -26,7 +27,7 @@ public class ProjectCreateDto {
     private Long customerNo;
     @NotBlank(message = "선박종류 필수입니다.")
     private Long vesselNo;
-    private List<ProductPlan> productPlans;
+    private List<ProductPlanCreateRequestDto> productPlans;
 
 
     public Project toEntity(Customer customer, Vessel vessel){
@@ -39,7 +40,6 @@ public class ProjectCreateDto {
         pjt.setType(ProjectType.Waiting);
         pjt.setCustomer(customer);
         pjt.setVessel(vessel);
-        pjt.setProductPlans(this.getProductPlans());
         return pjt;
     }
 

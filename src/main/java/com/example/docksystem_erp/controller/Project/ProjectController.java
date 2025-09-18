@@ -25,8 +25,8 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Objects> CreateProject(@RequestBody ProjectCreateDto dto){
-        System.out.println(dto);
-         pjtService.CreateProject(dto);
+        //System.out.println(dto);
+       pjtService.CreateProject(dto);
         return ResponseEntity.noContent().build();
     }
 
@@ -37,8 +37,9 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{projectNo}")
-    public ResponseEntity<Objects> deleteUser(@PathVariable("id")Long projectNo){
-               return ResponseEntity.noContent().build();
+    public ResponseEntity<Objects> Delete(@PathVariable("id")Long projectNo){
+        pjtService.DeleteProject(projectNo);
+     return ResponseEntity.noContent().build();
     }
 
 }
