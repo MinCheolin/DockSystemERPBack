@@ -24,17 +24,19 @@ public class ProductPlan {
     @Column(nullable = false)
     private Date ppEndDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_no")
     private Project project;
-//    @ManyToOne
-//    @JoinColumn(name = "bom_no")
-//    private BOM bomNo;
 
-    public void updateProductPlan(ProductPlanUpdateRequestDto requestDto){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bom_no")
+    private BOM bom;
+
+    public void updateProductPlan(ProductPlanUpdateRequestDto requestDto,BOM bom,Project pjt){
         this.ppName = requestDto.getPpName();
         this.ppStartDate = requestDto.getPpStartDate();
         this.ppEndDate = requestDto.getPpEndDate();
-
+        this.project = pjt;
+        this.bom = bom;
     }
 }

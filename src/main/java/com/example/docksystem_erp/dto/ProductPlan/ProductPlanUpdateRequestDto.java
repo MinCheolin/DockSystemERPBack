@@ -10,6 +10,5 @@ public class ProductPlanUpdateRequestDto {
     private String ppName;
     private Date ppStartDate;
     private Date ppEndDate;
-//    private Long projectNo;
-//    private Long bomNo;
+    private Long bomNo;
 }

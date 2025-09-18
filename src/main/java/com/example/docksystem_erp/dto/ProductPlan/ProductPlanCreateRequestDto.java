@@ -1,5 +1,7 @@
 package com.example.docksystem_erp.dto.ProductPlan;
 
+import com.example.docksystem_erp.entity.BOM.BOM;
+import com.example.docksystem_erp.entity.ProductPlan.ProductPlan;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,8 +20,16 @@ public class ProductPlanCreateRequestDto {
     @NotBlank(message = "마감일은 필수입니다.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date ppEndDate;
-//    @NotNull(message = "프로젝트는 필수입니다.")
-//    private Long projectNo;
-//    @NotNull(message = "BOM은 필수입니다.")
-//    private  Long bomNo;
+    @NotNull(message = "BOM은 필수입니다.")
+    private  Long bomNo;
+
+    public ProductPlan toEntity(ProductPlanCreateRequestDto dto, BOM bom){
+        ProductPlan pp = new ProductPlan();
+        pp.setPpName(dto.getPpName());
+        pp.setPpStartDate(dto.getPpStartDate());
+        pp.setPpEndDate(dto.getPpEndDate());
+        pp.setBom(bom);
+        return pp;
+    }
+
 }
