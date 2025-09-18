@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ClientUpdateRequestDto {
 
+    private Long clientNo;
     private String clientName;
     private ClientType type;
     private String clientBrn;

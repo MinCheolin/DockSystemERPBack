@@ -1,8 +1,8 @@
 package com.example.docksystem_erp.service.BOM;
 
-import com.example.docksystem_erp.dto.BOM.BOMCreateRequestDto;
-import com.example.docksystem_erp.dto.BOM.BOMResponseDto;
-import com.example.docksystem_erp.dto.BOM.BomUpdateRequestDto;
+import com.example.docksystem_erp.dto.BOM.Bom.BOMCreateRequestDto;
+import com.example.docksystem_erp.dto.BOM.Bom.BOMResponseDto;
+import com.example.docksystem_erp.dto.BOM.Bom.BomUpdateRequestDto;
 import com.example.docksystem_erp.entity.BOM.BOM;
 import com.example.docksystem_erp.entity.BOM.BOMDetail;
 import com.example.docksystem_erp.entity.Material.Material;
@@ -17,13 +17,13 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-//@RequiredArgsConstructor << 이거쓰면 생성자 알아서 만들어주는데 쓸줄모름
-
 public class BOMService {
     private final BOMRepository bomRepository;
     private final VesselRepository vesselRepository;
@@ -41,7 +41,6 @@ public class BOMService {
         this.materialRepository = materialRepository;
     }
 
-    //아델 - 크리에이션
     @Transactional
     public void createBOM(BOMCreateRequestDto requestDto){
         Vessel vessel = vesselRepository.findById(requestDto.getVesselNo())
@@ -49,35 +48,28 @@ public class BOMService {
         StandardProcess standardProcess = standardProcessRepository.findById(requestDto.getSpNo())
                 .orElseThrow(()-> new EntityNotFoundException("존재하지 않는 공정입니다."+ requestDto.getSpNo()));
 
-
         BOM bom = new BOM();
 
         bom.setVessel(vessel);
         bom.setStandardProcess(standardProcess);
 
-        List<BOMDetail> bomDetails = requestDto.getBomDetailDtoList().stream()
+        List<BOMDetail> bomDetails = Optional.ofNullable(requestDto.getBomDetailDtoList())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(detailDto -> {
-
                     Material material = materialRepository.findById(detailDto.getMaterialNo())
                             .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 자재입니다. ID: " + detailDto.getMaterialNo()));
 
+                    BOMDetail bomDetail = new BOMDetail();
+                    bomDetail.setMaterial(material);
+                    bomDetail.setBomDetailCount(detailDto.getBomDetailCount());
+                    bomDetail.setBom(bom);
 
-
-                            //새로운 bom entity 설정
-                            BOMDetail bomDetail = new BOMDetail();
-                            bomDetail.setMaterial(material);
-                            bomDetail.setBomDetailCount(detailDto.getBomDetailCount());
-
-                            //bomdetail이 어디 bom에 들어가는지
-                            bomDetail.setBom(bom);
-
-                            return bomDetail;
-
-                }).collect(Collectors.toList());
-
-                    bom.setBomDetails(bomDetails);
-                    BOM savedBom = bomRepository.save(bom);
-
+                    return bomDetail;
+                })
+                .collect(Collectors.toList());
+        bom.setBomDetails(bomDetails);
+        bomRepository.save(bom);
     }
 
     //전체 조회
@@ -87,16 +79,6 @@ public class BOMService {
                 .collect(Collectors.toList());
     }
 
-    /*
-    // 1개씩 조회
-    public BOMResponseDto getBOMById(Long bomNo){
-        BOM bom = bomRepository.findById(bomNo)
-                .orElseThrow(()-> new EntityNotFoundException("해당 No의 BOM을 찾을 수 없습니다." + bomNo));
-        return new BOMResponseDto(bom);
-    }*/
-
-
-    //이승기 - 삭제
     public void deleteBOM(Long bomNo){
         if(!bomRepository.existsById(bomNo)){
             throw new EntityNotFoundException("해당 No의 BOM을 찾을 수 없습니다." + bomNo);
@@ -104,30 +86,19 @@ public class BOMService {
         bomRepository.deleteById(bomNo);
     }
 
-/*
-    public BOMResponseDto updateBOM(Long bomNo, BomUpdateRequestDto requestDto){
+
+    public BOM updateBOM(Long bomNo, BomUpdateRequestDto requestDto){
         BOM bom = bomRepository.findById(bomNo)
                 .orElseThrow(()-> new EntityNotFoundException("해당 No의 Bom을 찾을 수 없습니다."));
+        
+        Vessel vessel = vesselRepository.findById(requestDto.getVesselNo())
+                .orElseThrow(()->new EntityNotFoundException("해당 No의 선박을 찾을 수 없습니다."));
+        StandardProcess sp = standardProcessRepository.findById(requestDto.getSpNo())
+                .orElseThrow(()->new EntityNotFoundException("해당 No의 표준 공정을 찾을 수 없습니다."));
 
-        bom.getBomDetails().clear();
-
-        List<BOMDetail> newBomDetails = requestDto.getBomDetails().stream()
-                .map(detailDto->{
-                    Material material = materialRepository.findById(detailDto.getMaterialNo())
-                            .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 자재입니다. ID: " + detailDto.getMaterialNo()));
-
-
-                    BOMDetail bomDetail = new BOMDetail();
-                    bomDetail.setMaterial(material);
-                    bomDetail.setBomDetailCount(detailDto.getBomDetailCount());
-                    bomDetail.setBom(bom);
-
-                    return bomDetail;
-                }).toList();
-
-        bom.getBomDetails().addAll(newBomDetails);
-
-        return new BOMResponseDto(bom);
-    }*/
+        bom.setVessel(vessel);
+        bom.setStandardProcess(sp);
+        return bom;
+    }
 
 }
