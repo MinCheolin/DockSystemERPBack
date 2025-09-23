@@ -45,7 +45,7 @@ public class EquipmentService {
 
         Equipment newEquipment = equipmentRepository.save(equipment);
 
-        if(newEquipment.getType() == EquipmentStatusType.Operating) {
+        if(newEquipment.getType() == EquipmentStatusType.NotOperating) {
             MESEquipmentDto dto = new MESEquipmentDto();
             dto.setErpEquipNo(newEquipment.getEquipNo().toString());
             dto.setEquipCode(newEquipment.getEquipCode());
@@ -69,7 +69,7 @@ public class EquipmentService {
 
         equipmentRepository.delete(existingEquipment);
         //mes로 delete 요청
-        if(existingEquipment.getType() == EquipmentStatusType.Operating) {
+        if(existingEquipment.getType() == EquipmentStatusType.NotOperating) {
             restTemplate.delete(mesApiUrl + "/equipments/" + equipNo);
         }
     }
@@ -82,7 +82,7 @@ public class EquipmentService {
 
         Equipment updateEquipment = equipmentRepository.save((existingEquipment));
 
-        if(updateEquipment.getType() == EquipmentStatusType.Operating) {
+        if(updateEquipment.getType() == EquipmentStatusType.NotOperating) {
             MESEquipmentDto dto = new MESEquipmentDto();
             dto.setErpEquipNo(updateEquipment.getEquipNo().toString());
             dto.setEquipCode(updateEquipment.getEquipCode());
