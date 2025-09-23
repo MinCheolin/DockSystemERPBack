@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.controller.Vessel;
 
+import com.example.docksystem_erp.dto.Vessel.MESVesselDto;
 import com.example.docksystem_erp.dto.Vessel.VesselCreateRequestDto;
 import com.example.docksystem_erp.dto.Vessel.VesselResponseDto;
 import com.example.docksystem_erp.dto.Vessel.VesselUpdateRequestDto;
@@ -14,7 +15,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/vessels")
-@CrossOrigin(origins = "http://localhost:3000")
 public class VesselController {
     private final VesselService vesselService;
 
@@ -42,11 +42,8 @@ public class VesselController {
     public VesselResponseDto updateVessel(
             @PathVariable("vesselNo") Long VesselNo,
             @RequestBody VesselUpdateRequestDto requestDto) {
-
         Vessel updatedVessel = vesselService.updateVessel(VesselNo, requestDto);
         return VesselResponseDto.fromEntity(updatedVessel);
 
     }
-
-
 }

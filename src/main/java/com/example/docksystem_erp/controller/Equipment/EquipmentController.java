@@ -26,7 +26,7 @@ public class EquipmentController {
     //Create
     @PostMapping
     public Equipment createEquipment(@RequestBody EquipmentCreateRequestDto requestDto){
-        return equipmentService.creasteEquipment(requestDto);
+        return equipmentService.createEquipment(requestDto);
     }
     //Delete
     @DeleteMapping("/{id}")

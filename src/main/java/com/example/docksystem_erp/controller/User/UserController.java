@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/erp/v1/users")
-
-@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserService userService;
 
@@ -28,7 +26,6 @@ public class UserController {
     //Create
     @PostMapping
     public User createUser(@RequestBody UserCreateRequestDto requestDto){
-        System.out.println(requestDto);
         return userService.createUser(requestDto);
     }
     //Delete
@@ -39,7 +36,8 @@ public class UserController {
     }
     //Update
     @PutMapping("/{userNo}")
-    public UserResponseDto updateUser(@PathVariable("userNo")Long userNo, @RequestBody UserUpdateRequestDto requestDto){
+    public UserResponseDto updateUser(@PathVariable("userNo")Long userNo,
+                                      @RequestBody UserUpdateRequestDto requestDto){
         User updateUser = userService.updateUser(userNo,requestDto);
         return UserResponseDto.fromEntity(updateUser);
     }
