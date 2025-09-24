@@ -1,9 +1,6 @@
 package com.example.docksystem_erp.service.Equipment;
 
-import com.example.docksystem_erp.dto.Equipment.EquipmentCreateRequestDto;
-import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
-import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
-import com.example.docksystem_erp.dto.Equipment.MESEquipmentDto;
+import com.example.docksystem_erp.dto.Equipment.*;
 import com.example.docksystem_erp.entity.Equipment.Equipment;
 import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
 import com.example.docksystem_erp.repository.Equipment.EquipmentRepository;
@@ -46,7 +43,7 @@ public class EquipmentService {
         Equipment newEquipment = equipmentRepository.save(equipment);
 
         if(newEquipment.getType() == EquipmentStatusType.NotOperating) {
-            MESEquipmentDto dto = new MESEquipmentDto();
+            ToMESEquipmentDto dto = new ToMESEquipmentDto();
             dto.setErpEquipNo(newEquipment.getEquipNo().toString());
             dto.setEquipCode(newEquipment.getEquipCode());
             dto.setEquipName(newEquipment.getEquipName());
@@ -74,6 +71,19 @@ public class EquipmentService {
         }
     }
 
+    public Equipment updateFromMes(FromMesEquipmentDto dto){
+        Equipment existingEquipment = equipmentRepository.findById(dto.getEquipNo())
+                .orElseThrow(()->new EntityNotFoundException("해당 No의 장비를 찾을 수 없습니다."));
+
+       if(existingEquipment.getType() == EquipmentStatusType.Operating){
+           existingEquipment.setType(EquipmentStatusType.NotOperating);
+       }else{
+           existingEquipment.setType(EquipmentStatusType.Operating);
+       }
+
+        return equipmentRepository.save(existingEquipment);
+    }
+
     //업데이트
     public Equipment updateEquipment(Long equipNo, EquipmentUpdateRequestDto requestDto){
         Equipment existingEquipment = equipmentRepository.findById(equipNo)
@@ -83,7 +93,7 @@ public class EquipmentService {
         Equipment updateEquipment = equipmentRepository.save((existingEquipment));
 
         if(updateEquipment.getType() == EquipmentStatusType.NotOperating) {
-            MESEquipmentDto dto = new MESEquipmentDto();
+            ToMESEquipmentDto dto = new ToMESEquipmentDto();
             dto.setErpEquipNo(updateEquipment.getEquipNo().toString());
             dto.setEquipCode(updateEquipment.getEquipCode());
             dto.setEquipName(updateEquipment.getEquipName());
@@ -93,7 +103,7 @@ public class EquipmentService {
     }
 
     //mes 전송
-    public void sendEquipmentMES(MESEquipmentDto dto){
+    public void sendEquipmentMES(ToMESEquipmentDto dto){
         try{
             restTemplate.postForObject(mesApiUrl+"/equipments",dto,String.class);
             System.out.println("전송 성공");

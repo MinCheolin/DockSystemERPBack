@@ -3,6 +3,7 @@ package com.example.docksystem_erp.controller.Equipment;
 import com.example.docksystem_erp.dto.Equipment.EquipmentCreateRequestDto;
 import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
 import com.example.docksystem_erp.dto.Equipment.EquipmentUpdateRequestDto;
+import com.example.docksystem_erp.dto.Equipment.FromMesEquipmentDto;
 import com.example.docksystem_erp.entity.Equipment.Equipment;
 import com.example.docksystem_erp.service.Equipment.EquipmentService;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +40,11 @@ public class EquipmentController {
     public EquipmentResponseDto updateEquipment(@PathVariable("equipNo") Long equipNo, @RequestBody EquipmentUpdateRequestDto requestDto){
         Equipment updateEquipment = equipmentService.updateEquipment(equipNo,requestDto);
         return EquipmentResponseDto.fromEntity(updateEquipment);
+    }
+
+    @PostMapping("/mes/update")
+    public ResponseEntity<Void> updateFromDto(@RequestBody FromMesEquipmentDto dto){
+        equipmentService.updateFromMes(dto);
+        return ResponseEntity.ok().build();
     }
 }

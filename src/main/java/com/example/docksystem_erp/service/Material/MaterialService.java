@@ -1,6 +1,5 @@
 package com.example.docksystem_erp.service.Material;
 
-import com.example.docksystem_erp.dto.Equipment.MESEquipmentDto;
 import com.example.docksystem_erp.dto.Material.MESMaterialDto;
 import com.example.docksystem_erp.dto.Material.MaterialCreateRequestDto;
 import com.example.docksystem_erp.dto.Material.MaterialResponseDto;
@@ -94,7 +93,6 @@ public class MaterialService {
             System.out.println("전송 성공");
         }catch (Exception e){
             System.err.println("전송 실패");
-            e.printStackTrace();
         }
     }
 }
