@@ -17,7 +17,7 @@ public class User {
     private String userName;
     @Column(nullable = false,unique = true,length = 50)
     private String userId;
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 100)
     private String userPw;
     @Column(nullable = false,length = 100)
     private String userPhone;

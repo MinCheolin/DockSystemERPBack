@@ -1,6 +1,7 @@
 package com.example.docksystem_erp.service.User;
 
 import com.example.docksystem_erp.dto.User.UserCreateRequestDto;
+import com.example.docksystem_erp.dto.User.UserLoginDto;
 import com.example.docksystem_erp.dto.User.UserResponseDto;
 import com.example.docksystem_erp.dto.User.UserUpdateRequestDto;
 import com.example.docksystem_erp.entity.Department.Department;
@@ -11,7 +12,9 @@ import com.example.docksystem_erp.repository.Role.RoleRepository;
 import com.example.docksystem_erp.repository.User.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,25 +22,26 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
+
 public class UserService {
     private final UserRepository userRepository;
     private final DepartmentRepository departmentRepository;
     private final RoleRepository roleRepository;
-    @Autowired
-    public UserService(UserRepository userRepository,
-                       DepartmentRepository departmentRepository,
-                       RoleRepository roleRepository){
-        this.userRepository = userRepository;
-        this.departmentRepository =departmentRepository;
-        this.roleRepository = roleRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserLoginDto findByUserId(String userId){
+        UserLoginDto user = new UserLoginDto(userRepository.findByUserId(userId).orElseThrow(()->new EntityNotFoundException("사용자가 없습니다.")));
+        return user;
     }
+
 
     //새로운 사용자 정보 생성
     public User createUser(UserCreateRequestDto requestDto){
         User user = new User();
         user.setUserName(requestDto.getUserName());
         user.setUserId(requestDto.getUserId());
-        user.setUserPw(requestDto.getUserPw());
+        user.setUserPw(passwordEncoder.encode(requestDto.getUserPw()));
         user.setUserPhone(requestDto.getUserPhone());
         user.setUserWork(requestDto.getUserWork());
         user.setUserSalary(requestDto.getUserSalary());
