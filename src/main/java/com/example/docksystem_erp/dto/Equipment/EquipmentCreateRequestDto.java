@@ -1,6 +1,6 @@
 package com.example.docksystem_erp.dto.Equipment;
 
-import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
+import com.example.docksystem_erp.entity.Equipment.EquipmentType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +18,7 @@ public class EquipmentCreateRequestDto {
     private String equipName;
     @Enumerated(EnumType.STRING)
     @NotBlank(message = "장비의 유형은 필수입니다.")
-    private EquipmentStatusType type;
+    private EquipmentType type;
     @NotBlank(message = "장비 구매가는 필수입니다.")
     private Long equipPrice;
     @NotBlank(message = "장비 감가 상각은 필수입니다.")

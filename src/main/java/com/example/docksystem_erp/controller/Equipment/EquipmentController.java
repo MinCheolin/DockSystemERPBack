@@ -44,6 +44,7 @@ public class EquipmentController {
 
     @PostMapping("/mes/update")
     public ResponseEntity<Void> updateFromDto(@RequestBody FromMesEquipmentDto dto){
+        System.out.println("Received equipNo: " + dto.getEquipNo());
         equipmentService.updateFromMes(dto);
         return ResponseEntity.ok().build();
     }

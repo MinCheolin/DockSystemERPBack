@@ -2,7 +2,7 @@ package com.example.docksystem_erp.service.Equipment;
 
 import com.example.docksystem_erp.dto.Equipment.*;
 import com.example.docksystem_erp.entity.Equipment.Equipment;
-import com.example.docksystem_erp.entity.Equipment.EquipmentStatusType;
+import com.example.docksystem_erp.entity.Equipment.EquipmentType;
 import com.example.docksystem_erp.repository.Equipment.EquipmentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -42,13 +42,12 @@ public class EquipmentService {
 
         Equipment newEquipment = equipmentRepository.save(equipment);
 
-        if(newEquipment.getType() == EquipmentStatusType.NotOperating) {
-            ToMESEquipmentDto dto = new ToMESEquipmentDto();
-            dto.setErpEquipNo(newEquipment.getEquipNo().toString());
-            dto.setEquipCode(newEquipment.getEquipCode());
-            dto.setEquipName(newEquipment.getEquipName());
-            sendEquipmentMES(dto);
-        }
+        ToMESEquipmentDto dto = new ToMESEquipmentDto();
+        dto.setErpEquipNo(newEquipment.getEquipNo().toString());
+        dto.setEquipCode(newEquipment.getEquipCode());
+        dto.setEquipName(newEquipment.getEquipName());
+        sendEquipmentMES(dto);
+
         return newEquipment;
     }
 
@@ -66,22 +65,20 @@ public class EquipmentService {
 
         equipmentRepository.delete(existingEquipment);
         //mes로 delete 요청
-        if(existingEquipment.getType() == EquipmentStatusType.NotOperating) {
-            restTemplate.delete(mesApiUrl + "/equipments/" + equipNo);
-        }
+
+        restTemplate.delete(mesApiUrl + "/equipments/" + equipNo);
     }
 
     public Equipment updateFromMes(FromMesEquipmentDto dto){
         Equipment existingEquipment = equipmentRepository.findById(dto.getEquipNo())
                 .orElseThrow(()->new EntityNotFoundException("해당 No의 장비를 찾을 수 없습니다."));
 
-       if(existingEquipment.getType() == EquipmentStatusType.Operating){
-           existingEquipment.setType(EquipmentStatusType.NotOperating);
-       }else{
-           existingEquipment.setType(EquipmentStatusType.Operating);
-       }
+        if(!dto.getType().equals(existingEquipment.getType())){
+            existingEquipment.setType(dto.getType());
+            equipmentRepository.save(existingEquipment);
+        }
 
-        return equipmentRepository.save(existingEquipment);
+        return existingEquipment;
     }
 
     //업데이트
@@ -92,13 +89,12 @@ public class EquipmentService {
 
         Equipment updateEquipment = equipmentRepository.save((existingEquipment));
 
-        if(updateEquipment.getType() == EquipmentStatusType.NotOperating) {
-            ToMESEquipmentDto dto = new ToMESEquipmentDto();
-            dto.setErpEquipNo(updateEquipment.getEquipNo().toString());
-            dto.setEquipCode(updateEquipment.getEquipCode());
-            dto.setEquipName(updateEquipment.getEquipName());
-            sendEquipmentMES(dto);
-        }
+       ToMESEquipmentDto dto = new ToMESEquipmentDto();
+        dto.setErpEquipNo(updateEquipment.getEquipNo().toString());
+        dto.setEquipCode(updateEquipment.getEquipCode());
+        dto.setEquipName(updateEquipment.getEquipName());
+        sendEquipmentMES(dto);
+
         return existingEquipment;
     }
 
@@ -109,7 +105,6 @@ public class EquipmentService {
             System.out.println("전송 성공");
         }catch (Exception e){
             System.err.println("전송 실패");
-            e.printStackTrace();
         }
     }
 }

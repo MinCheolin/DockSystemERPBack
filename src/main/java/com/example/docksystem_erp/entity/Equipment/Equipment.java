@@ -19,7 +19,7 @@ public class Equipment {
     private String equipName;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private EquipmentStatusType type;
+    private EquipmentType type;
     @Column(nullable = false)
     private Long equipPrice;
     @Column(nullable = false)
