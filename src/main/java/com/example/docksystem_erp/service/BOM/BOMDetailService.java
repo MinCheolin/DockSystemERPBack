@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.service.BOM;
 
+import com.example.docksystem_erp.dto.BOM.Bom.BOMResponseDto;
 import com.example.docksystem_erp.dto.BOM.BomDetail.BomDetailResponseDto;
 import com.example.docksystem_erp.dto.BOM.BomDetail.BomDetailUpdateRequestDto;
 import com.example.docksystem_erp.entity.BOM.BOM;
@@ -35,6 +36,13 @@ public class BOMDetailService {
     //모든 bom detail 조회
     public List<BomDetailResponseDto> getAllBomDetail(){
         return bomDetailRepository.findAll().stream()
+                .map(BomDetailResponseDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    //bom no에 해당해는 bom detail 조회
+    public List<BomDetailResponseDto> getBomDetail(Long bomNo){
+        return bomDetailRepository.findByBom_bomNo(bomNo).stream()
                 .map(BomDetailResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }

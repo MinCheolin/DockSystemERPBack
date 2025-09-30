@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.dto.StandardProcess;
 
+import com.example.docksystem_erp.dto.Equipment.EquipmentResponseDto;
 import com.example.docksystem_erp.entity.StandardProcess.StandardProcess;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ public class StandardProcessResponseDto {
     private String spName;
     private String spTime;
     private String spDescription;
-    private String spEquipment;
+    private EquipmentResponseDto equipment;
 
     public static StandardProcessResponseDto fromEntity(StandardProcess sp){
         StandardProcessResponseDto dto = new StandardProcessResponseDto();
@@ -19,7 +20,7 @@ public class StandardProcessResponseDto {
         dto.setSpName(sp.getSpName());
         dto.setSpTime(sp.getSpTime());
         dto.setSpDescription(sp.getSpDescription());
-        dto.setSpEquipment(sp.getSpEquipment());
+        dto.setEquipment(EquipmentResponseDto.fromEntity(sp.getEquipment()));
         return dto;
     }
 

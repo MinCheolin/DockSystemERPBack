@@ -1,5 +1,6 @@
 package com.example.docksystem_erp.entity.StandardProcess;
 
+import com.example.docksystem_erp.entity.Equipment.Equipment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,8 @@ public class StandardProcess {
     private String spTime;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String spDescription;
-    @Column(nullable = false,length = 50)
-    private String spEquipment;
+    @OneToOne
+    @JoinColumn(nullable = false,name = "equip_no")
+    private Equipment equipment;
 
 }

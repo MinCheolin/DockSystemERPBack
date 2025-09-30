@@ -24,6 +24,12 @@ public class BomDetailController {
         return ResponseEntity.ok(bomdetails);
     }
 
+    @GetMapping("/{bomNo}")
+    public ResponseEntity<List<BomDetailResponseDto>> getBomDetail(@PathVariable("bomNo") Long bomNo){
+        List<BomDetailResponseDto> bomdetails = bomDetailService.getBomDetail(bomNo);
+        return ResponseEntity.ok(bomdetails);
+    }
+
     @PutMapping("/{bomDetailNo}")
     public BomDetailResponseDto updateBOMDetail(@PathVariable("bomDetailNo") Long bomNo, @Valid @RequestBody BomDetailUpdateRequestDto requestDto) {
         BOMDetail updateBomDetail = bomDetailService.updateBomDetail(bomNo, requestDto);
