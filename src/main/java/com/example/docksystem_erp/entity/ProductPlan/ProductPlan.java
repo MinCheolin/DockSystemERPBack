@@ -29,7 +29,7 @@ public class ProductPlan {
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bom_no")
+    @JoinColumn(name = "bom_no", nullable = true)
     private BOM bom;
 
     public void updateProductPlan(ProductPlanUpdateRequestDto requestDto,BOM bom,Project pjt){

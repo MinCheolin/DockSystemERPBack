@@ -1,7 +1,6 @@
 package com.example.docksystem_erp.controller.Home;
 
 import com.example.docksystem_erp.service.Home.ExchangeRateService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
