@@ -25,6 +25,8 @@ public class ProductPlan {
     private Date ppEndDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+
+
     @JoinColumn(name = "project_no")
     private Project project;
 
