@@ -3,6 +3,7 @@ package com.example.docksystem_erp.service.Project;
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanUpdateRequestDto;
 import com.example.docksystem_erp.dto.Project.ProjectCreateDto;
 import com.example.docksystem_erp.dto.Project.ProjectResponseDto;
+import com.example.docksystem_erp.dto.Project.ProjectTypeUpdateDto;
 import com.example.docksystem_erp.dto.Project.ProjectUpdateDto;
 import com.example.docksystem_erp.entity.BOM.BOM;
 import com.example.docksystem_erp.entity.Customer.Customer;
@@ -59,7 +60,11 @@ public class ProjectService {
         List<ProductPlan> productPlans = Optional.ofNullable(dto.getProductPlans()).orElse(Collections.emptyList())
                 .stream()
                 .map(productPlanDto -> {
-                    BOM bom = bomRepo.findById(productPlanDto.getBomNo()).orElseThrow(()->new EntityNotFoundException("존재하지 않는 bom"));
+                    BOM bom = null;
+                    if (productPlanDto.getBomNo() != null) {
+                        bom = bomRepo.findById(productPlanDto.getBomNo())
+                                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 bom"));
+                    }
                     ProductPlan pp = productPlanDto.toEntity(productPlanDto, bom);
                     pp.setProject(pjt);
                     return pp;
@@ -110,11 +115,14 @@ public class ProjectService {
                   ppRepo.save(newPlan);
               }
           }
-
           pjtRepo.save(updateProject);
+     }
+    public void updateProjectType(Long projectNo, ProjectTypeUpdateDto dto){
+        Project pjt = pjtRepo.findById(projectNo).orElseThrow(() -> new EntityNotFoundException("Project not found "));
+        pjt.setType(dto.getType());
+        pjtRepo.save(pjt);
+    }
 
-
-      }
 
     public void DeleteProject(Long projectNo){
         if(!pjtRepo.existsById(projectNo)){

@@ -8,6 +8,7 @@ import com.example.docksystem_erp.entity.Project.Project;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Data
 public class ProductPlanResponseDto {
@@ -25,7 +26,9 @@ public class ProductPlanResponseDto {
         dto.setPpStartDate(productPlan.getPpStartDate());
         dto.setPpEndDate(productPlan.getPpEndDate());
         dto.setProject(ProjectResponseDto.fromEntity(productPlan.getProject()));
-        dto.setBom(BOMResponseDto.fromEntity(productPlan.getBom()));
+        dto.setBom(Optional.ofNullable(productPlan.getBom())
+                .map(BOMResponseDto::fromEntity)
+                .orElse(null));
         return dto;
     }
 }

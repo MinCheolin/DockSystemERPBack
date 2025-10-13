@@ -2,6 +2,7 @@ package com.example.docksystem_erp.controller.Project;
 
 import com.example.docksystem_erp.dto.Project.ProjectCreateDto;
 import com.example.docksystem_erp.dto.Project.ProjectResponseDto;
+import com.example.docksystem_erp.dto.Project.ProjectTypeUpdateDto;
 import com.example.docksystem_erp.dto.Project.ProjectUpdateDto;
 import com.example.docksystem_erp.service.Project.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,12 @@ public class ProjectController {
     public ResponseEntity<Objects> UpdateProject(@PathVariable("projectNo")Long projectNo, @RequestBody ProjectUpdateDto dto){
        pjtService.UpdateProject(projectNo,dto);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{projectNo}/type")
+    public ResponseEntity<Void> updateType(@PathVariable("projectNo") Long projectNo, @RequestBody ProjectTypeUpdateDto dto){
+        pjtService.updateProjectType(projectNo,dto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
