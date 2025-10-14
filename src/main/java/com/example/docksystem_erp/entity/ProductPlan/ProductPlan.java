@@ -27,6 +27,8 @@ public class ProductPlan {
     private String ppStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
+
+
     @JoinColumn(name = "project_no")
     private Project project;
 

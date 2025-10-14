@@ -5,11 +5,14 @@ import com.example.docksystem_erp.dto.Client.ClientResponseDto;
 import com.example.docksystem_erp.dto.Client.ClientUpdateRequestDto;
 import com.example.docksystem_erp.entity.Client.Client;
 import com.example.docksystem_erp.service.Client.ClientService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -33,19 +36,28 @@ public class ClientController {
 
     //거래처 삭제
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteClient(@PathVariable("id")Long clientNo){
-        clientService.deleteClient(clientNo);
-        return ResponseEntity.noContent().build();
-
+    public ResponseEntity<?> deleteClient(@PathVariable("id")Long clientNo){
+        try{
+            clientService.deleteClient(clientNo);
+            return ResponseEntity.ok(Map.of("message","거래처를 삭제하였습니다."));
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message",e.getMessage()));
+        }
     }
 
     //거래처수정
     @PutMapping("/{clientNo}")
-    public ResponseEntity<Objects> updateClient(
+    public ResponseEntity<?> updateClient(
             @PathVariable("clientNo") Long clientNo,
             @RequestBody ClientUpdateRequestDto requestDto){
 
-        clientService.updateClient(clientNo, requestDto);
-        return ResponseEntity.noContent().build();
+        try{
+            clientService.updateClient(clientNo, requestDto);
+            return ResponseEntity.ok(Map.of("message","거래처를 수정하였습니다."));
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message",e.getMessage()));
+        }
+
+
     }
 }
