@@ -1,6 +1,7 @@
 package com.example.docksystem_erp.controller.ProductPlan;
 
 import com.example.docksystem_erp.dto.ProductPlan.ProductPlanResponseDto;
+import com.example.docksystem_erp.dto.ProductPlan.ProductPlanStatusUpdateDto;
 import com.example.docksystem_erp.service.ProductPlan.ProductPlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,10 @@ public class ProductPlanController {
         List<ProductPlanResponseDto> product_plans = productPlanService.findByPjtNo(projectNo);
         return ResponseEntity.ok(product_plans);
     }
-
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Void> updateType(@PathVariable("id") Long ppNo, @RequestBody ProductPlanStatusUpdateDto dto){
+        productPlanService.updateProductPlanStatus(ppNo,dto);
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 public class ProductPlanUpdateRequestDto {
     private Long ppNo;
     private String ppName;
+    private String ppStatus;
     private Date ppStartDate;
     private Date ppEndDate;
     private Long bomNo;

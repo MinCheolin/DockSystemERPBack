@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Data
 public class ProductPlanCreateRequestDto {
-
     @NotBlank(message = "생산 계획명은 필수입니다.")
     private String ppName;
     @NotBlank(message = "시작일은 필수입니다.")
@@ -20,6 +19,8 @@ public class ProductPlanCreateRequestDto {
     @NotBlank(message = "마감일은 필수입니다.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date ppEndDate;
+    @NotBlank(message = "상태값은 필수입니다.")
+    private String ppStatus;
     @NotNull(message = "BOM은 필수입니다.")
     private  Long bomNo;
 
@@ -28,6 +29,7 @@ public class ProductPlanCreateRequestDto {
         pp.setPpName(dto.getPpName());
         pp.setPpStartDate(dto.getPpStartDate());
         pp.setPpEndDate(dto.getPpEndDate());
+        pp.setPpStatus(dto.getPpStatus());
         pp.setBom(bom);
         return pp;
     }

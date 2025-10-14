@@ -16,6 +16,7 @@ public class ProductPlanResponseDto {
     private String ppName;
     private Date ppStartDate;
     private Date ppEndDate;
+    private String ppStatus;
     private ProjectResponseDto project;
     private BOMResponseDto bom;
 
@@ -25,6 +26,7 @@ public class ProductPlanResponseDto {
         dto.setPpName(productPlan.getPpName());
         dto.setPpStartDate(productPlan.getPpStartDate());
         dto.setPpEndDate(productPlan.getPpEndDate());
+        dto.setPpStatus(productPlan.getPpStatus());
         dto.setProject(ProjectResponseDto.fromEntity(productPlan.getProject()));
         dto.setBom(Optional.ofNullable(productPlan.getBom())
                 .map(BOMResponseDto::fromEntity)
