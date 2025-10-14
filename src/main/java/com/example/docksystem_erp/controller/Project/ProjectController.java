@@ -39,7 +39,7 @@ public class ProjectController {
 
     @PutMapping("/{projectNo}")
     public ResponseEntity<Objects> UpdateProject(@PathVariable("projectNo")Long projectNo, @RequestBody ProjectUpdateDto dto){
-       pjtService.UpdateProject(projectNo,dto);
+        pjtService.UpdateProject(projectNo,dto);
         return ResponseEntity.noContent().build();
     }
 

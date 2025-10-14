@@ -76,14 +76,13 @@ public class ProjectService {
     }
 
       public void UpdateProject(Long projectNo, ProjectUpdateDto updateDto) {
-          Project updateProject = pjtRepo.findById(projectNo)
-                  .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 프로젝트입니다."));
+        Project updateProject = pjtRepo.findById(projectNo)
+                  .orElseThrow(() -> new EntityNotFoundException("Project Not Found"));
           Customer updateCustomer = customerRepo.findById(updateDto.getCustomerNo())
-                  .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 고객사입니다."));
+                  .orElseThrow(() -> new EntityNotFoundException("Customer Not Found"));
           Vessel updateVessel = vesselRepo.findById(updateDto.getVesselNo())
-                  .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 선박입니다."));
+                  .orElseThrow(() -> new EntityNotFoundException("Vessel Not Found"));
           updateProject.UpdateProject( updateDto.toEntity(updateCustomer, updateVessel));
-
 
           List<ProductPlan> existPlan = ppRepo.findByProject_ProjectNo(projectNo);
 
@@ -91,27 +90,36 @@ public class ProjectService {
                   .map(p -> p.getPpNo())
                   .filter(id -> id != null && id > 0)
                   .collect(Collectors.toSet());
-
           List<ProductPlan> toDelete = existPlan.stream()
                   .filter(plan -> !receivedIds.contains(plan.getPpNo()))
                   .toList();
           ppRepo.deleteAll(toDelete);
 
-
           for (ProductPlanUpdateRequestDto productPlanDto : updateDto.getProductPlans()) {
+              // bomNo가 있는 경우에만 BOM 조회
+              BOM bom = null;
+              if (productPlanDto.getBomNo() != null && productPlanDto.getBomNo() > 0) {
+                  bom = bomRepo.findById(productPlanDto.getBomNo())
+                          .orElseThrow(() -> new EntityNotFoundException("BOM Not Found"));
+              }
+
               if (productPlanDto.getPpNo() != null && productPlanDto.getPpNo() > 0) { // 수정
                   ProductPlan plan = ppRepo.findById(productPlanDto.getPpNo())
-                          .orElseThrow(()-> new EntityNotFoundException("존재하지 않는 생산계획."));
+                          .orElseThrow(() -> new EntityNotFoundException("ProductPlan Not Found"));
                   plan.setPpName(productPlanDto.getPpName());
                   plan.setPpStartDate(productPlanDto.getPpStartDate());
                   plan.setPpEndDate(productPlanDto.getPpEndDate());
-                  plan.setBom(bomRepo.findById(productPlanDto.getBomNo()).orElseThrow(()->new EntityNotFoundException("존재하지 않는 bom")));
-              } else {// 추가
+                  if (bom != null) { // bom이 있을 때만 설정
+                      plan.setBom(bom);
+                  }
+              } else { // 추가
                   ProductPlan newPlan = new ProductPlan();
                   newPlan.setPpName(productPlanDto.getPpName());
                   newPlan.setPpStartDate(productPlanDto.getPpStartDate());
                   newPlan.setPpEndDate(productPlanDto.getPpEndDate());
-                  newPlan.setBom(bomRepo.findById(productPlanDto.getBomNo()).orElseThrow(()->new EntityNotFoundException("존재하지 않는 bom")));
+                  if (bom != null) { // bom이 있을 때만 설정
+                      newPlan.setBom(bom);
+                  }
                   ppRepo.save(newPlan);
               }
           }
