@@ -23,6 +23,8 @@ public class ProductPlan {
     private Date ppStartDate;
     @Column(nullable = false)
     private Date ppEndDate;
+    @Column(nullable = false)
+    private String ppStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
 
@@ -38,6 +40,7 @@ public class ProductPlan {
         this.ppName = requestDto.getPpName();
         this.ppStartDate = requestDto.getPpStartDate();
         this.ppEndDate = requestDto.getPpEndDate();
+        this.ppStatus = requestDto.getPpStatus();
         this.project = pjt;
         this.bom = bom;
     }
