@@ -1,0 +1,37 @@
+package com.example.docksystem_erp.dto.ProductPlan;
+
+import com.example.docksystem_erp.entity.BOM.BOM;
+import com.example.docksystem_erp.entity.ProductPlan.ProductPlan;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.util.Date;
+
+@Data
+public class ProductPlanCreateRequestDto {
+    @NotBlank(message = "생산 계획명은 필수입니다.")
+    private String ppName;
+    @NotBlank(message = "시작일은 필수입니다.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date ppStartDate;
+    @NotBlank(message = "마감일은 필수입니다.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date ppEndDate;
+    @NotBlank(message = "상태값은 필수입니다.")
+    private String ppStatus;
+    @NotNull(message = "BOM은 필수입니다.")
+    private  Long bomNo;
+
+    public ProductPlan toEntity(ProductPlanCreateRequestDto dto, BOM bom){
+        ProductPlan pp = new ProductPlan();
+        pp.setPpName(dto.getPpName());
+        pp.setPpStartDate(dto.getPpStartDate());
+        pp.setPpEndDate(dto.getPpEndDate());
+        pp.setPpStatus(dto.getPpStatus());
+        pp.setBom(bom);
+        return pp;
+    }
+
+}
